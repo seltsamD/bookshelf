@@ -1,0 +1,10 @@
+h1{
+    color: blue;
+}
+body{
+    background: url("shelves.jpg") fixed;
+}
+.mainContainer{
+    background-color: rgba(249, 255, 249, 0.8);
+
+}
