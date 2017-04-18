@@ -2,6 +2,8 @@ package com.nakhod.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -26,7 +28,7 @@ public class Author {
     private String lastname;
 
     @Column
-    @Size(min = 0, max = 3000)
+    @Size(min = 10, max = 3000)
     private String biography;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -73,7 +75,6 @@ public class Author {
     public void setBiography(String biography) {
         this.biography = biography;
     }
-
 
     @Override
     public boolean equals(Object o) {

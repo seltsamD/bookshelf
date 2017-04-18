@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainUIController {
 
-    @GetMapping("/")
+    @GetMapping({"/", "/index"})
     public String init(){
-        return "book";
+        return "index";
     }
 
     @GetMapping("/author")

@@ -8,3 +8,13 @@ body{
     background-color: rgba(249, 255, 249, 0.8);
 
 }
+.error{
+    color: red;
+}
+
+.btnGroup{
+    text-align: right;
+}
+.spanPadding{
+    padding-right: 10px;
+}
