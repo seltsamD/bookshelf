@@ -26,4 +26,11 @@
     <definition name="book" extends="default">
         <put-attribute name="body" value="/WEB-INF/jsp/book.jsp"/>
     </definition>
+
+    <definition name="registration" extends="default">
+        <put-attribute name="body" value="/WEB-INF/jsp/registration.jsp"/>
+    </definition>
+    <definition name="login" extends="default">
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
+    </definition>
 </tiles-definitions>

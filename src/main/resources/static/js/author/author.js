@@ -1,13 +1,39 @@
 'use strict';
 let table = null;
+let author;
 $(function () {
+
+    $('#editAuthorBtn').css('display', 'none');
+
+    $('#authorForm').focusout(function () {
+        if ($('#authorForm').valid())
+            $('#addAuthorBtn').prop('disabled', false);
+    });
+
+    $('#deleteAuthorModal').dialog({
+        modal: true,
+        width: 550,
+        resizable: false,
+        autoOpen: false,
+        show: {
+            effect: 'drop',
+            duration: 250
+        },
+        hide: {
+            effect: 'drop',
+            duration: 250
+        }
+    });
+
+
     getAllAuthors();
 
     $('#addAuthorBtn').click(function () {
+
         let data = {
             firstname: $("#authorForm #firstname").val(),
             lastname: $("#authorForm #lastname").val(),
-            biography: $("#authorForm #biography").val()
+            biography: $("#authorForm #biography").val(),
         };
         $.ajax({
             type: 'POST',
@@ -17,6 +43,7 @@ $(function () {
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (result) {
+                getAllAuthors();
                 $('.nav-tabs a[href="#listAuthor"]').tab('show');
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -43,7 +70,9 @@ $(function () {
                             if (value !== undefined || value != null){
                                 let col = '<div class="panel panel-default"> ' +
                                     '<div class="panel-heading">' +
-                                    '<h4 class="panel-title">' +
+                                    '<h4 class="panel-title spanPadding">' +
+                                    '<span id="deleteSpan" onclick="removeAuthor('+value.id+')" class="glyphicon glyphicon glyphicon-trash"></span> '+
+                                    '<span onclick="editAuthor('+value.id+')" class="glyphicon glyphicon-pencil"></span> '+
                                     '<a data-toggle="collapse" data-parent="#collapse-group" href="#'+value.id+'">'+
                                     value.firstname + ' ' + value.lastname + '</a>' +
                                     '</h4></div>' +
@@ -68,23 +97,36 @@ $(function () {
 
     }
 
+    $('#deleteYesButton').click(function () {
+        $.ajax({
+            type: 'DELETE',
+            encoding: 'UTF-8',
+            contentType: 'text/html; charset=UTF-8',
+            url: 'restful/author' + $.param({"id": author}),
+            success: function (result) {
+                $('.nav-tabs a[href="#listAuthor"]').tab('show');
+                $('#deleteAuthorModal').dialog('close');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#errorMessage').html(xhr.responseText);
+            }
+        });
+    });
+    $('#deleteNoButton').click(function () {
+        $('#deleteAuthorModal').modal("hide");
+    });
+
+    $('#deleteSpan').click(function () {
+        $('#deleteAuthorModal').modal("toggle");
+    });
+
 });
 
 function removeAuthor(id) {
-
-    $.ajax({
-        type: 'DELETE',
-        encoding: 'UTF-8',
-        contentType: 'text/html; charset=UTF-8',
-        url: 'restful/author',
-        data: id,
-        success: function (result) {
-            $('.nav-tabs a[href="#listAuthor"]').tab('show');
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            $('#errorMessage').html(xhr.responseText);
-        }
-    });
+    author = id;
 }
 
+function editAuthor(id) {
+   
+}
 
