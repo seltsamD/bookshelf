@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainUIController {
 
     @GetMapping({"/", "/index"})
-    public String init(){
+    public String init() {
         return "index";
     }
 
     @GetMapping("/author")
-    public String author(){
+    public String author() {
         return "author";
     }
 
     @GetMapping("/genre")
-    public String genre(){
+    public String genre() {
         return "genre";
     }
 
     @GetMapping("/book")
-    public String book(){
+    public String book() {
         return "book";
     }
 

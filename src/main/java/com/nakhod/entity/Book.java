@@ -10,12 +10,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name="books")
-public class Book  implements Serializable {
+@Table(name = "books")
+public class Book implements Serializable {
 
     @Column
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
@@ -25,12 +25,12 @@ public class Book  implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
-    @JsonBackReference(value="author-book")
+    @JsonBackReference(value = "author-book")
     Author author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    @JsonBackReference(value="genre-book")
+    @JsonBackReference(value = "genre-book")
     Genre genre;
 
     @Column
@@ -41,12 +41,6 @@ public class Book  implements Serializable {
     @Column
     @Size(min = 1, max = 1000)
     private String description;
-
-
-    @Lob
-    @Column
-    @JsonIgnore
-    private byte[] image;
 
 
     public Long getId() {
@@ -79,14 +73,6 @@ public class Book  implements Serializable {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public String getIsbn() {

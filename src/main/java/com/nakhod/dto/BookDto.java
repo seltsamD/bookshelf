@@ -6,7 +6,7 @@ import com.nakhod.entity.Book;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BookDto  implements Serializable {
+public class BookDto implements Serializable {
     private long id;
     private String name;
     private long author_id;
@@ -28,15 +28,17 @@ public class BookDto  implements Serializable {
         this.description = description;
     }
 
-    public Book createFromDto(){
+    public Book createFromDto() {
         Book book = new Book();
+        book.setId(this.getId());
         book.setName(this.getName());
         book.setIsbn(this.getIsbn());
         book.setDescription(this.getDescription());
         return book;
     }
 
-    public static BookDto createToDto(Book book){
+
+    public static BookDto createToDto(Book book) {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setName(book.getName());
@@ -44,6 +46,8 @@ public class BookDto  implements Serializable {
         bookDto.setDescription(book.getDescription());
         bookDto.setGenreName(book.getGenre().getName());
         bookDto.setAuthorName(book.getAuthor().getFirstname() + " " + book.getAuthor().getLastname());
+        bookDto.setAuthor_id(book.getAuthor().getId());
+        bookDto.setGenre_id(book.getGenre().getId());
         return bookDto;
     }
 

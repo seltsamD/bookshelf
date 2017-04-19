@@ -10,11 +10,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="genres")
-public class Genre implements Serializable{
+@Table(name = "genres")
+public class Genre implements Serializable {
     @Column
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -22,8 +22,8 @@ public class Genre implements Serializable{
     @Size(min = 1, max = 255)
     private String name;
 
-    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = false)
-    @JsonManagedReference(value="genre-book")
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "genre-book")
     Set<Book> books;
 
     public Long getId() {

@@ -22,11 +22,12 @@ public class BookContoller {
 
     @Autowired
     GenreRepository genreRepository;
+
     @GetMapping
     public Iterable<BookDto> findAll() {
         List<BookDto> listDto = new ArrayList<BookDto>();
-        for(Book book: bookRepository.findAll()){
-            listDto.add( BookDto.createToDto((book)));
+        for (Book book : bookRepository.findAll()) {
+            listDto.add(BookDto.createToDto((book)));
         }
         return listDto;
     }
@@ -34,7 +35,7 @@ public class BookContoller {
 
     @GetMapping("/{id}")
     public BookDto findOne(@PathVariable("id") Long id) {
-        return  BookDto.createToDto(bookRepository.findOne(id));
+        return BookDto.createToDto(bookRepository.findOne(id));
     }
 
     @PostMapping
@@ -45,4 +46,19 @@ public class BookContoller {
         return bookRepository.save(newBook);
     }
 
+    @PutMapping
+    public Book updateBook(@RequestBody BookDto bookDto) {
+        Book newBook = bookRepository.findOne(bookDto.getId());
+        newBook.setName(bookDto.getName());
+        newBook.setIsbn(bookDto.getIsbn());
+        newBook.setDescription(bookDto.getDescription());
+        newBook.setAuthor(authorRepository.findOne(bookDto.getAuthor_id()));
+        newBook.setGenre(genreRepository.findOne(bookDto.getGenre_id()));
+        return bookRepository.save(newBook);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        bookRepository.delete(id);
+    }
 }

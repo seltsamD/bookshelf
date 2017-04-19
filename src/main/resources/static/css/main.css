@@ -1,8 +1,12 @@
 h1{
     color: blue;
 }
+h1,h2,h3{
+    font-family: 'Yeseva One', cursive;
+}
 body{
     background: url("shelves.jpg") fixed;
+    font-family: 'Prata', serif;
 }
 .mainContainer{
     background-color: rgba(249, 255, 249, 0.8);
@@ -17,4 +21,11 @@ body{
 }
 .spanPadding{
     padding-right: 10px;
+}
+.cursor{
+    cursor:pointer;
+}
+.panel-default > .panel-heading .badge {
+    color: #f5f5f5;
+    background-color: #adadad;
 }
