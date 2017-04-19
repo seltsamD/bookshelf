@@ -3,13 +3,7 @@ package com.nakhod.controller;
 import com.nakhod.entity.Author;
 import com.nakhod.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/restful/author")
@@ -33,10 +27,13 @@ public class AuthorController {
         return authorRepository.save(author);
     }
 
-    @DeleteMapping
-    public void deleteAuthor(@PathVariable("id") Long id){
+    @DeleteMapping("/{id}")
+    public void deleteAuthor(@PathVariable("id") Long id) {
         authorRepository.delete(id);
     }
 
-
+    @PutMapping
+    public Author updateAuthor(@RequestBody Author author) {
+        return authorRepository.save(author);
+    }
 }

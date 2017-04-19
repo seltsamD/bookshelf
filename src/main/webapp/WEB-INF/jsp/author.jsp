@@ -5,21 +5,17 @@
     <div class="col-sm-12 col-md-12 mainContainer">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#listAuthor">Author List</a></li>
-            <li><a data-toggle="tab" href="#menu1" id="linkAdd">Add author</a></li>
-            <li><a data-toggle="tab" href="#">Info author</a></li>
-            <button type="button" class="btn btn-info btn-md" id="myBtn">Toggle Modal</button>
+            <li><a data-toggle="tab" href="#changeAuthor"><span id="authorProcessTitle">Add author</span></a></li>
         </ul>
 
         <div class="tab-content">
             <div id="listAuthor" class="tab-pane fade in active">
-                <ul class="list-group" id="list-author">
-
-                </ul>
             </div>
-            <div id="menu1" class="tab-pane fade">
+            <div id="changeAuthor" class="tab-pane fade">
                 <h1 id="headAuthor"></h1>
                 <form id="authorForm">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autofocus/>
+                    <input type="hidden" name="id" id="id"/>
                     <div class="form-group sizing-between">
                         <label for="firstname" class="required">First name</label>
                         <input type="text" id="firstname" name="firstname" class="form-control" required/>
@@ -36,9 +32,9 @@
                     </div>
                 </form>
                 <div class="form-group btnGroup">
-                    <button id="addAuthorBtn" class="btn btn-raised btn-success btn-lg" disabled>Save</button>
-                    <button id="editAuthorBtn" class="btn btn-raised btn-warning btn-lg">Edit</button>
-                    <button id="cancelAuthorBtn" class="btn btn-raised btn-danger btn-lg">Cancel</button>
+                    <button id="addAuthorBtn" class="btn btn-raised btn-success" disabled>Save</button>
+                    <button id="editAuthorBtn" class="btn btn-raised btn-warning">Edit</button>
+                    <button id="cancelAuthorBtn" class="btn btn-raised btn-danger">Cancel</button>
                 </div>
 
 
@@ -49,20 +45,13 @@
     </div>
 </div>
 
-<div id="deleteAuthorModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p>
-                    Are you really want to delete this author? All books of this author will be delete.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button id="deleteYesButton" class="btn  btn-success btn-lg">Yes</button>
-                <button id="deleteNoButton" class="btn btn-danger btn-lg" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
+<div id="deleteAuthorModal" class="dialog" hidden>
+    <p>
+        Are you really want to delete this author? All books of this author will be delete.
+    </p>
+    <button id="deleteYesButton" class="btn  btn-success">Yes</button>
+    <button id="deleteNoButton" class="btn btn-danger admWarningBtn" data-dismiss="modal">No</button>
+
 </div>
 
 

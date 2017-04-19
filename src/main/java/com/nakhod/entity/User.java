@@ -4,22 +4,23 @@ import com.nakhod.constants.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Column
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
-    @NotNull
+    @Size(min = 3, max = 30)
     private String username;
 
     @Column
-    @NotNull
+    @Size(min = 3, max = 30)
     private String password;
 
     @Transient
@@ -72,9 +73,10 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, Role role) {
+    public User(String username, String password, String confirmationPassword, Role role) {
         this.username = username;
         this.password = password;
+        this.confirmationPassword = confirmationPassword;
         this.role = role;
     }
 

@@ -7,14 +7,16 @@
 <head>
   <%@ page contentType="text/html; charset=UTF-8" %>
   <meta name="viewport" content="width=device-width"/>
-  <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css"/>
-
+  <link href="https://fonts.googleapis.com/css?family=Prata|Yeseva+One" rel="stylesheet">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/bootstrap.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery.validate.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery-ui.min.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.theme.min.css"/>
 
 </head>
 

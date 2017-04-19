@@ -3,7 +3,7 @@
 <div class="container">
     <div class="col-sm-12 col-md-12 mainContainer">
         <div id="login">
-            <h1>Login!</h1>
+            <h1>Please enter your login and password</h1>
             <form id="signInForm" action="/login" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autofocus/>
                 <div class="form-group sizing-between">

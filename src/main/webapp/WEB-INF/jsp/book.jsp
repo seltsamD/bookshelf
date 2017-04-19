@@ -1,12 +1,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<spring:url value="/js/lib/dataTables.bootstrap4.min.js" var="dataTablesBoot" />
-<script src="${dataTablesBoot}"></script>
 
-<spring:url value="/js/lib/jquery.dataTables.min.js" var="dataTables" />
-<script src="${dataTables}"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery.dataTables.min.js"></script>
 
-<spring:url value="/css/dataTables.bootstrap4.min.css" var="dataTableCss" />
-<link href="${dataTableCss}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.bootstrap4.min.css"/>
 
 
 <div class="container">
@@ -14,7 +11,7 @@
         <div id="tabs">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#listBook">Book list</a></li>
-                <li><a data-toggle="tab" href="#menu1" id="linkAdd">Add book</a></li>
+                <li><a data-toggle="tab" href="#changeBook"><span id="bookProcessTitle">Add book</span></a></li>
             </ul>
         </div>
         <div class="tab-content">
@@ -26,6 +23,8 @@
                         <th class="th-size"><strong>ISBN</strong></th>
                         <th class="th-size"><strong>Author</strong></th>
                         <th class="th-size"><strong>Genre</strong></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,9 +32,10 @@
                     </tbody>
                 </table>
             </div>
-            <div id="menu1" class="tab-pane fade">
+            <div id="changeBook" class="tab-pane fade">
                 <form id="bookForm">
-                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autofocus/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" autofocus/>
+                    <input type="hidden" name="id" id="id"/>
                     <div class="form-group sizing-between">
                         <label for="name" class="required">Title</label>
                         <input type="text" id="name" name="name" class="form-control"/>
@@ -63,14 +63,24 @@
                     </div>
 
                 </form>
-                <button id="addBookBtn" class="btn btn-raised btn-success">Save</button>
+                <div class="form-group btnGroup">
+                    <button id="addBookBtn" class="btn btn-raised btn-success" disabled>Save</button>
+                    <button id="editBookBtn" class="btn btn-raised btn-warning">Edit</button>
+                    <button id="cancelBookBtn" class="btn btn-raised btn-danger">Cancel</button>
+                </div>
             </div>
         </div>
 
 
-
     </div>
 </div>
+<div id="deleteBookModal" class="dialog" hidden>
+    <p>
+        Are you really want to delete this book?
+    </p>
+    <button id="deleteYesButton" class="btn  btn-success">Yes</button>
+    <button id="deleteNoButton" class="btn btn-danger admWarningBtn" data-dismiss="modal">No</button>
 
-<spring:url value="/js/book/book.js" var="bookJS"/>
-<script src="${bookJS}"></script>
+</div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/book/book.validate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/book/book.js"></script>

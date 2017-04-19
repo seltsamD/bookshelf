@@ -7,17 +7,18 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.SortedSet;
 
 @Entity
-@Table(name="authors")
+@Table(name = "authors")
 public class Author {
     @Column
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
 
     @Column
     @Size(min = 1, max = 255)
@@ -31,8 +32,8 @@ public class Author {
     @Size(min = 10, max = 3000)
     private String biography;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference(value="author-book")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    @JsonManagedReference(value = "author-book")
     Set<Book> books;
 
 
